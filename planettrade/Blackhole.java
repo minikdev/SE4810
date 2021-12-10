@@ -1,7 +1,9 @@
 package project.planettrade;
 
-public class Blackhole {
+import project.planettrade.types.IBlackhole;
+
+public class Blackhole implements IBlackhole {
     public Galaxy explode() {
-        return new Galaxy();
+        return new Galaxy(new MyPlanetGenerator());
     }
 }
