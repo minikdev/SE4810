@@ -4,37 +4,34 @@ import project.gameengine.base.Action;
 import project.gameengine.base.GameContext;
 import project.gameengine.base.Player;
 import project.planettrade.Actions.BuyItem;
+import project.planettrade.types.ActionAbstractFactory;
+import project.planettrade.types.IPlanet;
 
 public class MyPlayer implements Player {
+    private final ActionAbstractFactory actionFactory;
     private String name;
     private double currentGold;
     private SpaceShip spaceShip;
-    private Planet currentPlanet;
-    public MyPlayer(String name) {
+    private IPlanet currentPlanet;
+    public MyPlayer(String name, ActionAbstractFactory actionAbstractFactory) {
         this.name = name;
-
+        this.actionFactory = actionAbstractFactory;
     }
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
     public Action play(GameContext context) {
-        System.out.println("Player " + name + " is playing");
-        System.out.println("Choose your action:");
-        System.out.println("1. Buy item");
-        System.out.println("2. Sell item");
-        System.out.println("3. Trade item");
-        System.out.println("4. End turn");
-        // TODO seçim yaptır
+        Action action =this.actionFactory.createAction(this,context);
 
-        Action myAction = new BuyItem();
-        return myAction;
+        return action;
     }
 
     @Override
     public void prepareForGame(GameContext context) {
+        // TODO: Select starting ship
         this.currentGold = 250 ;
     }
 }

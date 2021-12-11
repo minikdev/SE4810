@@ -12,6 +12,7 @@ public class Market implements IMarket {
     private int MAX_COMMODITIES = 5;
     public Market(CommodityGenerator generator) {
         this.generator = generator;
+        this.commodities = new java.util.ArrayList<ICommodity>();
         this.generateCommodities();
     }
     public void generateCommodities() {

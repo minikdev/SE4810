@@ -8,12 +8,12 @@ import project.gameengine.base.Player;
 
 public class Main {
     public static void main(String[] args) {
-        Game myGame = new MyGame() ;
+        Game myGame = new MyGame(new MySpaceshipGenerator(),new Blackhole(),10) ;
         GameRenderer myRenderer = new MyGameRenderer();
         GameEngine myEngine = new TurnBasedGameEngine(myGame,myRenderer);
-        Player myPlayer = new MyPlayer("Minik");
-        Player myPlayer2 = new MyPlayer("Begüş");
-        Player myPlayer3 = new MyPlayer("Eylülov");
+        Player myPlayer = new MyPlayer("Minik",new BasicActionFactory());
+        Player myPlayer2 = new MyPlayer("Begüş",new BasicActionFactory());
+        Player myPlayer3 = new MyPlayer("Eylülov",new BasicActionFactory());
         myEngine.addPlayer(myPlayer);
         myEngine.addPlayer(myPlayer2);
         myEngine.addPlayer(myPlayer3);
