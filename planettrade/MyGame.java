@@ -40,9 +40,8 @@ public class MyGame implements Game {
     public void init(List<Player> players) {
         this.players = players;
         this.maxTurnCount = this.turnForEachPlayer * players.size();
-        this.preparePlayers();
         this.context = new MyGameContext(players,this.blackhole,this.spaceships);
-        System.out.println(this.getContext());
+        this.preparePlayers();
     }
 
 
@@ -87,6 +86,7 @@ public class MyGame implements Game {
 
     @Override
     public String toString() {
+        // TODO: Implement this method
         return "MyGame{" +
                 "context=" + context +
                 '}';

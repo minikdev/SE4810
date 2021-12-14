@@ -4,6 +4,7 @@ import project.planettrade.generators.CommodityGenerator;
 import project.planettrade.types.ICommodity;
 import project.planettrade.types.IMarket;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Market implements IMarket {
@@ -12,12 +13,17 @@ public class Market implements IMarket {
     private int MAX_COMMODITIES = 5;
     public Market(CommodityGenerator generator) {
         this.generator = generator;
-        this.commodities = new java.util.ArrayList<ICommodity>();
+        this.commodities = new ArrayList<>();
         this.generateCommodities();
     }
     public void generateCommodities() {
         for (int i = 0; i < MAX_COMMODITIES; i++) {
             this.commodities.add(generator.generateCommodity());
         }
+    }
+
+    @Override
+    public List<ICommodity> getCommodities() {
+        return this.commodities;
     }
 }

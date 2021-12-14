@@ -21,4 +21,28 @@ public class Planet implements IPlanet {
         this.x = x;
         this.y = y;
     }
+
+    @Override
+    public IMarket getMarket() {
+        return this.market;
+    }
+    public double getDistanceTo(IPlanet planet) {
+        return Math.sqrt(Math.pow(this.x - planet.getX(), 2) + Math.pow(this.y - planet.getY(), 2));
+    }
+
+    @Override
+    public int getX() {
+        return this.x;
+    }
+
+    @Override
+    public int getY() {
+        return this.y;
+    }
+    public double getParkingPrice(){
+        return this.parkingPrice;
+    }
+    public double getFuelPrice(){
+        return this.fuelPrice;
+    }
 }

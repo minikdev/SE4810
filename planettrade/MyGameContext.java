@@ -4,6 +4,7 @@ import project.gameengine.base.GameContext;
 import project.gameengine.base.Player;
 import project.planettrade.generators.SpaceshipGenerator;
 import project.planettrade.types.IBlackhole;
+import project.planettrade.types.IPlanet;
 import project.planettrade.types.ISpaceship;
 
 import java.util.List;
@@ -23,8 +24,12 @@ public class MyGameContext implements GameContext {
         return "MyGameContextsssss";
     }
 
-    public int getTest() {
-        return 5;
+    public List<ISpaceship> getSpaceships() {
+        return this.spaceships;
+    }
+
+    public Galaxy getGalaxy() {
+        return galaxy;
     }
 
 
