@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface IMarket{
     List<ICommodity> getCommodities();
+
+    void updatePrices();
 }

@@ -22,12 +22,6 @@ public enum Commodity implements ICommodity {
         this.volume = volume;
     }
 
-    public double getDecayRatio() {
-        return decayRatio;
-    }
-
-
-
     @Override
     public void setSellPrice(double sellPrice) {
          this.sellPrice = sellPrice;
@@ -55,6 +49,19 @@ public enum Commodity implements ICommodity {
 
     public double getVolume() {
         return volume;
+    }
+
+    @Override
+    public void decay() {
+         this.amount = this.amount *(1-decayRatio);
+
+    }
+
+    @Override
+    public void updatePrice() {
+        this.buyPrice = this.buyPrice * (1+0.01);
+        this.sellPrice = this.sellPrice * (1-0.01);
+        this.amount = this.amount * (1-0.01);
     }
 
 }

@@ -4,10 +4,12 @@ import project.gameengine.base.GameContext;
 import project.gameengine.base.Player;
 import project.planettrade.generators.SpaceshipGenerator;
 import project.planettrade.types.IBlackhole;
+import project.planettrade.types.IMarket;
 import project.planettrade.types.IPlanet;
 import project.planettrade.types.ISpaceship;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyGameContext implements GameContext {
     private final List<ISpaceship> spaceships;
@@ -20,8 +22,13 @@ public class MyGameContext implements GameContext {
         this.galaxy = blackhole.explode();
     }
 
-    public String ToString() {
-        return "MyGameContextsssss";
+    public String toString() {
+        String result = "Planet:";
+        for (IPlanet planet : galaxy.getPlanets()) {
+            result += planet + "\n";
+            result += planet.getMarket() + "\n";
+        }
+        return result;
     }
 
     public List<ISpaceship> getSpaceships() {
@@ -33,4 +40,9 @@ public class MyGameContext implements GameContext {
     }
 
 
+    public void update() {
+        List<IMarket> markets = galaxy.getPlanets().stream().map(IPlanet::getMarket).filter(m -> m != null).collect(Collectors.toList());
+        // Lambda method reference used
+        markets.forEach(IMarket::updatePrices);
+    }
 }

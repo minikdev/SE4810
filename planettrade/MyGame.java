@@ -56,7 +56,7 @@ public class MyGame implements Game {
         if (turn >= maxTurnCount) {
             this.over = true;
         }
-        // TODO: UPDATE MARKETS' PRICES
+        ((MyGameContext)this.context).update();
 
     }
 
@@ -86,9 +86,14 @@ public class MyGame implements Game {
 
     @Override
     public String toString() {
-        // TODO: Implement this method
-        return "MyGame{" +
-                "context=" + context +
-                '}';
+        // Player - Minik, Current Gold: 150, Spaceship: Anadol, Current Planet: Mars
+        // Currently Game Context: Game Context
+        String result = "";
+        for (Player player : players) {
+            result+= player + "\n";
+        }
+        result += "Currently Game Context: \n";
+        result += this.context;
+        return result;
     }
 }

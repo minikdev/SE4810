@@ -13,4 +13,7 @@ public interface ICommodity {
     void setAmount(double amount);
 
     double getVolume();
+    void decay();
+
+    void updatePrice();
 }

@@ -45,4 +45,9 @@ public class Planet implements IPlanet {
     public double getFuelPrice(){
         return this.fuelPrice;
     }
+
+    @Override
+    public String toString() {
+        return this.name +" [" + this.getX() + "," + this.getY() + "]";
+    }
 }

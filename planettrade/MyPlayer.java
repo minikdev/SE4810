@@ -4,10 +4,12 @@ import project.gameengine.base.Action;
 import project.gameengine.base.GameContext;
 import project.gameengine.base.Player;
 import project.planettrade.types.ActionAbstractFactory;
+import project.planettrade.types.ICommodity;
 import project.planettrade.types.IPlanet;
 import project.planettrade.types.ISpaceship;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyPlayer implements Player {
     private final ActionAbstractFactory actionFactory;
@@ -27,7 +29,9 @@ public class MyPlayer implements Player {
     @Override
     public Action play(GameContext context) {
         Action action =this.actionFactory.createAction(this,context);
-        // TODO Decay Users' commodities
+        List<Cargo> cargoList = this.spaceShip.getCargoList();
+        List<ICommodity> allCommodities= cargoList.stream().map(Cargo::getCommodity).collect(Collectors.toList());
+        allCommodities.forEach(commodity -> commodity.decay());
 
         return action;
     }
@@ -55,9 +59,6 @@ public class MyPlayer implements Player {
         return this.spaceShip;
     }
 
-    public void setSpaceship(ISpaceship spaceship) {
-        this.spaceShip = spaceship;
-    }
 
     public IPlanet getPlanet() {
         return this.currentPlanet;
@@ -72,5 +73,8 @@ public class MyPlayer implements Player {
 
     public void setCurrentGold(double currentGold) {
         this.currentGold = currentGold;
+    }
+    public String toString(){
+        return "Player: " +this.name+ " Gold: " +this.currentGold + " Spaceship: " +this.spaceShip + " Planet: " +this.currentPlanet;
     }
 }
